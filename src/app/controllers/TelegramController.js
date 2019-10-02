@@ -1,3 +1,4 @@
+/*
 import TelegramApi from '../services/telegram';
 
 class TelegramController {
@@ -9,3 +10,4 @@ class TelegramController {
 }
 
 export default new TelegramController();
+*/

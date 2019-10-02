@@ -20,7 +20,7 @@ routes.use(authMiddleware);
 
 routes.put('/users', UserController.update);
 
-routes.post('/telegram', TelegramController.store);
+// routes.post('/telegram', TelegramController.store);
 
 routes.get('/providers', ProviderController.index);
 

@@ -1,0 +1,8 @@
+{
+  "apikey": "sDe5kd12_ZRYUk05pmxmlutA1JgpwLbMMW_WqP4cfoGi",
+  "iam_apikey_description": "Auto-generated for key 9d2e5b3b-a0c8-4549-92bf-8c2069af19c6",
+  "iam_apikey_name": "Auto-generated service credentials",
+  "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+  "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/1d5708f8ddc54d66b2e88892de296ae0::serviceid:ServiceId-d8be0b1e-4533-4cff-9c2a-3e20dcc7ab60",
+  "url": "https://gateway-wdc.watsonplatform.net/natural-language-understanding/api"
+}

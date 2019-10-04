@@ -1,5 +1,6 @@
 import Telegraf from 'telegraf';
 import TelegramConf from '../../../config/telegram';
+import robotText from './text';
 
 // import Telegram from 'telegraf/telegram';
 // import { resolve } from 'any-promise';
@@ -7,10 +8,19 @@ import TelegramConf from '../../../config/telegram';
 const bot = new Telegraf(TelegramConf.token);
 
 async function robot(context) {
+  let message = '';
   async function getMessages(ctx) {
-    console.log(ctx);
+    console.log(`${ctx.message.from.first_name} sent: ${ctx.message.text}`);
+    message = ctx.message.text;
+  }
+  async function messageToKeywords() {
+    return new Promise(resolve => {
+      const keywords = robotText(message);
+      resolve(keywords);
+    });
   }
   await getMessages(context);
+  await messageToKeywords();
 }
 
 bot.start(ctx =>

@@ -10,6 +10,12 @@ module.exports = {
       id_user: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
       },
       id_category: {
         type: Sequelize.INTEGER,
@@ -30,7 +36,7 @@ module.exports = {
       amount: {
         type: Sequelize.DOUBLE,
         allowNull: false,
-        defaultValue: 0,
+        defaultValue: 0.0,
       },
       is_credit: {
         type: Sequelize.BOOLEAN,

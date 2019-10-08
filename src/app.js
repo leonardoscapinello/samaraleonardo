@@ -3,7 +3,7 @@ import path from 'path';
 import routes from './routes';
 
 import './database';
-import './app/robots/bots/telegram';
+// import './app/robots/bots/telegram';
 
 class App {
   constructor() {

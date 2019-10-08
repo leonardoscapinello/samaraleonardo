@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Transaction extends Model {
+class Transactions extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -16,12 +16,13 @@ class Transaction extends Model {
         sequelize,
       }
     );
+
     return this;
   }
 
-  /* static associate(models) {
-    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
-  } */
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey: 'id_user', as: 'user' });
+  }
 }
 
-export default Transaction;
+export default Transactions;

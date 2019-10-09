@@ -36,9 +36,9 @@ routes.get('/categories/:id', CategoriesController.show);
 routes.put('/categories', CategoriesController.update);
 
 routes.post('/wallets', WalletsController.store);
-//routes.get('/wallets', WalletsController.index);
-//routes.get('/wallets/:id', WalletsController.show);
-//routes.put('/wallets', WalletsController.update);
+routes.get('/wallets', WalletsController.index);
+routes.get('/wallets/:id', WalletsController.show);
+routes.put('/wallets', WalletsController.update);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

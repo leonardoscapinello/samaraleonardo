@@ -6,6 +6,7 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import TransactionController from './app/controllers/TransactionController';
+import CategoriesController from './app/controllers/CategoriesController';
 
 import authMiddleware from './app/middleware/auth';
 
@@ -27,6 +28,11 @@ routes.post('/transactions', TransactionController.store);
 routes.get('/transactions', TransactionController.index);
 routes.get('/transactions/:id', TransactionController.show);
 routes.put('/transactions', TransactionController.update);
+
+routes.post('/categories', CategoriesController.store);
+routes.get('/categories', CategoriesController.index);
+routes.get('/categories/:id', CategoriesController.show);
+routes.put('/categories', CategoriesController.update);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

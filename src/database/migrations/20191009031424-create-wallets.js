@@ -12,7 +12,7 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      class: {
+      wallet_type: {
         type: Sequelize.ENUM,
         values: ['CC', 'DC', 'MN'],
         defaultValue: 'MN',

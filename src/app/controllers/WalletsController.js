@@ -1,0 +1,52 @@
+import * as Yup from 'yup';
+import Wallet from '../models/Wallets';
+
+class WalletsController {
+  async store(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string()
+        .min(3)
+        .max(32)
+        .required(),
+      wallet_type: Yup.string()
+      .oneOf(['MN', 'CC', 'DC'])
+      .required(),
+      icon: Yup.string().required(),
+      color: Yup.string()
+        .max(7)
+        .required(),
+      credit_limit: Yup.number().moreThan(0),
+      due_day: Yup.number()
+        .integer()
+        .moreThan(0)
+        .lessThan(32)
+        .when('credit_limit', (credit_limit, field) =>
+          credit_limit ? field.required() : field
+        ),
+      is_credit: Yup.boolean().default(false),
+    });
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation failed' });
+    }
+
+    const { name } = req.body;
+    const walletExist = await Wallet.findOne({ where: { name } });
+    if (walletExist) {
+      return res.status(400).json({ error: 'Wallet already exists.' });
+    }
+
+    const { id, wallet_type, icon, color, credit_limit, due_day } = await Wallet.create(req.body);
+    return res.json({
+      id,
+      name,
+      wallet_type,
+      icon,
+      color,
+      credit_limit,
+      due_day,
+    });
+
+  }
+}
+
+export default new WalletsController();

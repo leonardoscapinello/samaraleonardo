@@ -25,6 +25,8 @@ routes.get('/users', UserController.index);
 
 routes.post('/transactions', TransactionController.store);
 routes.get('/transactions', TransactionController.index);
+routes.get('/transactions/:id', TransactionController.show);
+routes.put('/transactions', TransactionController.update);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

@@ -1,10 +1,10 @@
 module.exports = {
   up: queryInterface => {
-    return queryInterface.addConstraint('transactions', ['id_wallet'], {
+    return queryInterface.addConstraint('transactions', ['id_category'], {
       type: 'foreign key',
-      name: 'id_wallet_fk',
+      name: 'id_category_fk',
       references: {
-        table: 'wallets',
+        table: 'categories',
         field: 'id',
       },
       onUpdate: 'CASCADE',
@@ -14,6 +14,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.removeColumn('transactions', 'id_wallet');
+    return queryInterface.removeColumn('transactions', 'id_category');
   },
 };

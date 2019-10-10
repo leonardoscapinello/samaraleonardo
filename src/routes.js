@@ -10,6 +10,9 @@ import CategoriesController from './app/controllers/CategoriesController';
 import WalletsController from './app/controllers/WalletsController';
 
 import authMiddleware from './app/middleware/auth';
+import CreditsController from './app/controllers/CreditsController';
+import DebitsController from './app/controllers/DebitsController';
+import DashboardController from './app/controllers/DashboardController';
 
 // import ProviderController from './app/controllers/ProviderController';
 // import TelegramController from './app/controllers/TelegramController';
@@ -30,6 +33,9 @@ routes.get('/transactions', TransactionController.index);
 routes.get('/transactions/:id', TransactionController.show);
 routes.put('/transactions', TransactionController.update);
 
+routes.get('/credits', CreditsController.index);
+routes.get('/debits', DebitsController.index);
+
 routes.post('/categories', CategoriesController.store);
 routes.get('/categories', CategoriesController.index);
 routes.get('/categories/:id', CategoriesController.show);
@@ -39,6 +45,8 @@ routes.post('/wallets', WalletsController.store);
 routes.get('/wallets', WalletsController.index);
 routes.get('/wallets/:id', WalletsController.show);
 routes.put('/wallets', WalletsController.update);
+
+routes.get('/dashboard', DashboardController.index);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

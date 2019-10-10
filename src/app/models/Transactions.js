@@ -22,6 +22,11 @@ class Transactions extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: 'id_user', as: 'user' });
+    this.belongsTo(models.Category, {
+      foreignKey: 'id_category',
+      as: 'category',
+    });
+    this.belongsTo(models.Wallet, { foreignKey: 'id_wallet', as: 'wallet' });
   }
 }
 

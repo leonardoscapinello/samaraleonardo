@@ -3,6 +3,8 @@ import { Op } from 'sequelize';
 import moment from 'moment';
 import Transactions from '../models/Transactions';
 import User from '../models/Users';
+import Wallet from '../models/Wallets';
+import Category from '../models/Categories';
 
 class TransactionController {
   async store(req, res) {
@@ -92,6 +94,24 @@ class TransactionController {
           as: 'user',
           attributes: ['id', 'name', 'email'],
         },
+        {
+          model: Category,
+          as: 'category',
+          attributes: ['id', 'category_name', 'is_credit'],
+        },
+        {
+          model: Wallet,
+          as: 'wallet',
+          attributes: [
+            'id',
+            'name',
+            'wallet_type',
+            'icon',
+            'color',
+            'credit_limit',
+            'due_day',
+          ],
+        },
       ],
     });
     return res.json(transactions);
@@ -128,9 +148,34 @@ class TransactionController {
           as: 'user',
           attributes: ['id', 'name', 'email'],
         },
+        {
+          model: Category,
+          as: 'category',
+          attributes: ['id', 'category_name', 'is_credit'],
+        },
+        {
+          model: Wallet,
+          as: 'wallet',
+          attributes: [
+            'id',
+            'name',
+            'wallet_type',
+            'icon',
+            'color',
+            'credit_limit',
+            'due_day',
+          ],
+        },
       ],
     });
-    return res.json(transactions);
+
+    if (!transactions) {
+      return res
+        .status(404)
+        .json({ error: 'Transaction not found with these id' });
+    }
+
+    return res.status(200).json(transactions);
   }
 
   async update(req, res) {

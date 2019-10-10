@@ -6,9 +6,9 @@ class Wallet extends Model {
       {
         name: Sequelize.STRING,
         wallet_type: {
-            type: Sequelize.ENUM,
-            values: ['CC', 'DC', 'MN'],
-            defaultValue: 'MN',
+          type: Sequelize.ENUM,
+          values: ['CC', 'DC', 'MN'],
+          defaultValue: 'MN',
         },
         icon: Sequelize.STRING,
         color: Sequelize.STRING,
@@ -23,9 +23,9 @@ class Wallet extends Model {
     return this;
   }
 
-  //static associate(models) {
+  // static associate(models) {
   //  this.belongsTo(models.User, { foreignKey: 'id_user', as: 'user' });
-  //}
+  // }
 }
 
 export default Wallet;

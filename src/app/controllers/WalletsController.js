@@ -9,8 +9,8 @@ class WalletsController {
         .max(32)
         .required(),
       wallet_type: Yup.string()
-      .oneOf(['MN', 'CC', 'DC'])
-      .required(),
+        .oneOf(['MN', 'CC', 'DC'])
+        .required(),
       icon: Yup.string().required(),
       color: Yup.string()
         .max(7)
@@ -35,7 +35,14 @@ class WalletsController {
       return res.status(400).json({ error: 'Wallet already exists.' });
     }
 
-    const { id, wallet_type, icon, color, credit_limit, due_day } = await Wallet.create(req.body);
+    const {
+      id,
+      wallet_type,
+      icon,
+      color,
+      credit_limit,
+      due_day,
+    } = await Wallet.create(req.body);
     return res.json({
       id,
       name,
@@ -45,9 +52,7 @@ class WalletsController {
       credit_limit,
       due_day,
     });
-
   }
-
 
   async update(req, res) {
     const schema = Yup.object().shape({
@@ -56,8 +61,8 @@ class WalletsController {
         .max(32)
         .required(),
       wallet_type: Yup.string()
-      .oneOf(['MN', 'CC', 'DC'])
-      .required(),
+        .oneOf(['MN', 'CC', 'DC'])
+        .required(),
       icon: Yup.string().required(),
       color: Yup.string()
         .max(7)
@@ -79,7 +84,9 @@ class WalletsController {
     const { name } = req.body;
     const walletExist = await Wallet.findOne({ where: { name } });
     if (walletExist) {
-      return res.status(400).json({ error: 'Wallet already exists with this name.' });
+      return res
+        .status(400)
+        .json({ error: 'Wallet already exists with this name.' });
     }
 
     const wallet = await Wallet.findByPk(req.body.id);
@@ -87,10 +94,17 @@ class WalletsController {
     if (!wallet) {
       return res
         .status(400)
-        .json({ error: `Wallet not found with this identifier`});
+        .json({ error: `Wallet not found with this identifier` });
     }
 
-    const { id, wallet_type, icon, color, credit_limit, due_day } = await wallet.update(req.body);
+    const {
+      id,
+      wallet_type,
+      icon,
+      color,
+      credit_limit,
+      due_day,
+    } = await wallet.update(req.body);
     return res.status(200).json({
       id,
       name,
@@ -100,7 +114,6 @@ class WalletsController {
       credit_limit,
       due_day,
     });
-
   }
 
   async index(req, res) {
@@ -138,7 +151,6 @@ class WalletsController {
     });
     return res.json(wallets);
   }
-
 }
 
 export default new WalletsController();

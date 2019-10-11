@@ -9,7 +9,7 @@ import Category from '../models/Categories';
 class TransactionController {
   async store(req, res) {
     const intervalDate = moment()
-      .subtract(2, 'days')
+      .subtract(6, 'hours')
       .toDate();
     const schema = Yup.object().shape({
       id_user: Yup.number()
@@ -46,9 +46,26 @@ class TransactionController {
       },
     });
 
+    const categoryCount = await Category.findOne({
+      where: {
+        id: req.body.id_category,
+        is_credit: req.body.is_credit,
+      },
+    });
+
+    if (!categoryCount) {
+      let categoryType = 'debits';
+      if (req.body.is_credit) {
+        categoryType = 'credits';
+      }
+      return res.status(400).json({
+        error: `The category choosen only accept ${categoryType} transactions.`,
+      });
+    }
+
     if (transactionCount.count > 0) {
       return res.status(400).json({
-        error: `There is already a transaction with the same title, value, and species registered in the last 48 hours.`,
+        error: `There is already a transaction with the same title, value, and species registered in the last 6 hours.`,
       });
     }
 

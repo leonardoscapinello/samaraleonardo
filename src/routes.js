@@ -14,6 +14,8 @@ import CreditsController from './app/controllers/CreditsController';
 import DebitsController from './app/controllers/DebitsController';
 import DashboardController from './app/controllers/DashboardController';
 
+import CreditCardController from './app/controllers/CreditCardController';
+
 // import ProviderController from './app/controllers/ProviderController';
 // import TelegramController from './app/controllers/TelegramController';
 
@@ -29,12 +31,13 @@ routes.put('/users', UserController.update);
 routes.get('/users', UserController.index);
 
 routes.post('/transactions', TransactionController.store);
-routes.get('/transactions', TransactionController.index);
-routes.get('/transactions/:id', TransactionController.show);
 routes.put('/transactions', TransactionController.update);
 
-routes.get('/credits', CreditsController.index);
-routes.get('/debits', DebitsController.index);
+routes.get('/transactions', TransactionController.index);
+routes.get('/transactions/credits', CreditsController.index);
+routes.get('/transactions/debits', DebitsController.index);
+routes.get('/transactions/creditcard', CreditCardController.index);
+routes.get('/transactions/:id', TransactionController.show);
 
 routes.post('/categories', CategoriesController.store);
 routes.get('/categories', CategoriesController.index);

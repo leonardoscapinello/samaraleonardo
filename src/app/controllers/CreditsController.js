@@ -34,15 +34,7 @@ class CreditsController {
         {
           model: Wallet,
           as: 'wallet',
-          attributes: [
-            'id',
-            'name',
-            'wallet_type',
-            'icon',
-            'color',
-            'credit_limit',
-            'due_day',
-          ],
+          attributes: ['id', 'name', 'wallet_type', 'icon', 'color'],
         },
       ],
     });

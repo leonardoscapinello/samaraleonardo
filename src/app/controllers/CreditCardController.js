@@ -3,12 +3,10 @@ import User from '../models/Users';
 import Wallet from '../models/Wallets';
 import Category from '../models/Categories';
 
-class DebitsController {
+class CreditCardController {
   async index(req, res) {
     const transactions = await Transactions.findAll({
-      where: {
-        is_credit: false,
-      },
+      where: {},
       attributes: [
         'id',
         'id_wallet',
@@ -34,7 +32,18 @@ class DebitsController {
         {
           model: Wallet,
           as: 'wallet',
-          attributes: ['id', 'name', 'wallet_type', 'icon', 'color'],
+          attributes: [
+            'id',
+            'name',
+            'wallet_type',
+            'icon',
+            'color',
+            'credit_limit',
+            'due_day',
+          ],
+          where: {
+            wallet_type: `CC`,
+          },
         },
       ],
     });
@@ -42,4 +51,4 @@ class DebitsController {
   }
 }
 
-export default new DebitsController();
+export default new CreditCardController();

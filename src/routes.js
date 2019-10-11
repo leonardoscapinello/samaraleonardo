@@ -15,6 +15,7 @@ import DebitsController from './app/controllers/DebitsController';
 import DashboardController from './app/controllers/DashboardController';
 
 import CreditCardController from './app/controllers/CreditCardController';
+import MailerController from './app/controllers/MailerController';
 
 // import ProviderController from './app/controllers/ProviderController';
 // import TelegramController from './app/controllers/TelegramController';
@@ -52,5 +53,6 @@ routes.put('/wallets', WalletsController.update);
 routes.get('/dashboard', DashboardController.index);
 
 routes.post('/files', upload.single('file'), FileController.store);
+routes.post('/mailer', MailerController.store);
 
 export default routes;

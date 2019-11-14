@@ -9,9 +9,9 @@ class DashboardController {
     const total_result = (total_credits - total_debits).toFixed(2);
     const cc_difference = (cc_payments - cc_expenses).toFixed(2);
     return res.status(200).json({
-      credits: total_credits,
-      debits: total_debits,
-      difference: total_result,
+      credits: total_credits || 0,
+      debits: total_debits || 0,
+      difference: total_result || 0,
       credit_card: {
         expenses: cc_expenses || 0,
         payments: cc_payments || 0,

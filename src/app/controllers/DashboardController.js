@@ -15,7 +15,7 @@ class DashboardController {
       credit_card: {
         expenses: cc_expenses || 0,
         payments: cc_payments || 0,
-        difference: parseFloat(cc_difference),
+        difference: parseFloat(cc_difference).toFixed(2),
       },
     });
   }

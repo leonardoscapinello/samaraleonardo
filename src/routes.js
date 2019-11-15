@@ -45,8 +45,8 @@ routes.get('/transactions/:id', TransactionController.show);
 routes.post('/categories', CategoriesController.store);
 routes.get('/categories', CategoriesController.index);
 routes.get('/categories/:id', CategoriesController.show);
-routes.get('/categories/credits', CreditCategoriesController.index);
-routes.get('/categories/debits', DebitCategoriesController.index);
+routes.get('/categories/credit', CreditCategoriesController.index);
+routes.get('/categories/debit', DebitCategoriesController.index);
 routes.put('/categories', CategoriesController.update);
 
 routes.post('/wallets', WalletsController.store);

@@ -7,6 +7,7 @@ import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import TransactionController from './app/controllers/TransactionController';
 import CategoriesController from './app/controllers/CategoriesController';
+import CreditCategoriesController from './app/controllers/CreditCategoriesController';
 import WalletsController from './app/controllers/WalletsController';
 
 import authMiddleware from './app/middleware/auth';
@@ -43,6 +44,8 @@ routes.get('/transactions/:id', TransactionController.show);
 routes.post('/categories', CategoriesController.store);
 routes.get('/categories', CategoriesController.index);
 routes.get('/categories/:id', CategoriesController.show);
+routes.get('/categories/credits', CreditCategoriesController.index);
+routes.get('/categories/debits', CategoriesController.show);
 routes.put('/categories', CategoriesController.update);
 
 routes.post('/wallets', WalletsController.store);

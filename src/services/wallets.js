@@ -1,6 +1,5 @@
 import Sequelize from 'sequelize';
 import Transactions from '../app/models/Transactions';
-import Wallet from '../app/models/Wallets';
 
 const WalletsResume = () => {
   return {

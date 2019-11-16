@@ -1,6 +1,8 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 import * as Yup from 'yup';
+import { Sequelize, Op } from 'sequelize';
+
 import Wallet from '../models/Wallets';
 import WalletsResume from '../../services/wallets';
 
@@ -85,19 +87,30 @@ class WalletsController {
     }
 
     const { name } = req.body;
-    const walletExist = await Wallet.findOne({ where: { name } });
+    const walletExist = await Wallet.findOne({
+      where: {
+        [Op.and]: {
+          name: {
+            [Op.iLike]: name,
+          },
+          id: {
+            [Op.not]: req.body.id,
+          },
+        },
+      },
+    });
     if (walletExist) {
       return res
         .status(400)
-        .json({ error: 'Wallet already exists with this name.' });
+        .json({ error: 'A wallet already exists with this name.' });
     }
 
     const wallet = await Wallet.findByPk(req.body.id);
 
     if (!wallet) {
-      return res
-        .status(400)
-        .json({ error: `Wallet not found with this identifier` });
+      return res.status(400).json({
+        error: 'Wallet not found with this identifier',
+      });
     }
 
     const {

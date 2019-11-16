@@ -141,8 +141,8 @@ class WalletsController {
       const { id } = await currentItem;
       const { sum_credits } = await WalletsResume.sumCredits(id);
       const { sum_debits } = await WalletsResume.sumDebits(id);
-      const sum_account_value = (sum_credits - sum_debits).toFixed(2);
-      currentItem.account_value = sum_account_value.toFixed(2);
+      const sum_account_value = sum_credits - sum_debits || 0;
+      currentItem.account_value = JSON.parse(sum_account_value.toFixed(2));
       finalObject.push(currentItem);
     }
     return res.json(finalObject);
@@ -164,6 +164,15 @@ class WalletsController {
       ],
       order: [['name', 'ASC']],
     });
+
+    if (wallets) {
+      const { sum_credits } = await WalletsResume.sumCredits(req.params.id);
+      const { sum_debits } = await WalletsResume.sumDebits(req.params.id);
+      const sum_account_value = sum_credits - sum_debits || 0;
+      wallets.account_value = JSON.parse(sum_account_value.toFixed(2));
+    } else {
+      return res.status(404).json({ error: 'Wallet not found' });
+    }
     return res.json(wallets);
   }
 }

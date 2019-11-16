@@ -14,6 +14,7 @@ class Wallet extends Model {
         color: Sequelize.STRING,
         credit_limit: Sequelize.DOUBLE,
         due_day: Sequelize.INTEGER,
+        account_value: Sequelize.VIRTUAL,
       },
       {
         sequelize,

@@ -1,5 +1,8 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 import * as Yup from 'yup';
 import Wallet from '../models/Wallets';
+import WalletsResume from '../../services/wallets';
 
 class WalletsController {
   async store(req, res) {
@@ -130,7 +133,23 @@ class WalletsController {
       ],
       order: [['name', 'ASC']],
     });
-    return res.json(wallets);
+
+    const finalObject = [];
+
+    for (const wallet of wallets) {
+      const currentItem = wallet.dataValues;
+      const { id } = await currentItem;
+      const { sum_credits } = await WalletsResume.sumCredits(id);
+      const { sum_debits } = await WalletsResume.sumDebits(id);
+      const sum_account_value = (sum_credits - sum_debits).toFixed(2);
+      currentItem.account_value = sum_account_value;
+      finalObject.push(currentItem);
+      console.log(`pushed ${id}`);
+    }
+
+    console.log(`-------------------------`);
+    console.log(finalObject);
+    return res.json(finalObject);
   }
 
   async show(req, res) {

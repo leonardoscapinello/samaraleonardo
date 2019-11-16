@@ -142,13 +142,9 @@ class WalletsController {
       const { sum_credits } = await WalletsResume.sumCredits(id);
       const { sum_debits } = await WalletsResume.sumDebits(id);
       const sum_account_value = (sum_credits - sum_debits).toFixed(2);
-      currentItem.account_value = sum_account_value;
+      currentItem.account_value = sum_account_value.toFixed(2);
       finalObject.push(currentItem);
-      console.log(`pushed ${id}`);
     }
-
-    console.log(`-------------------------`);
-    console.log(finalObject);
     return res.json(finalObject);
   }
 

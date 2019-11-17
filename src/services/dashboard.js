@@ -26,6 +26,9 @@ const Dashboard = () => {
         raw: true,
         where: {
           is_credit: false,
+          id_category: {
+            [Op.gt]: 4,
+          },
         },
       });
     },

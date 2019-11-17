@@ -6,6 +6,7 @@ class Category extends Model {
       {
         category_name: Sequelize.STRING,
         is_credit: Sequelize.BOOLEAN,
+        is_visible: Sequelize.BOOLEAN,
       },
       {
         sequelize,

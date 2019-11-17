@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+import { Sequelize, Op } from 'sequelize';
 import Transactions from '../app/models/Transactions';
 import Wallet from '../app/models/Wallets';
 
@@ -12,6 +12,9 @@ const Dashboard = () => {
         raw: true,
         where: {
           is_credit: true,
+          id_category: {
+            [Op.gt]: 4,
+          },
         },
       });
     },

@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 import * as Yup from 'yup';
-import { Sequelize, Op } from 'sequelize';
+import { Op } from 'sequelize';
 
 import Wallet from '../models/Wallets';
 import WalletsResume from '../../services/wallets';

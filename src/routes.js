@@ -18,6 +18,7 @@ import DashboardController from './app/controllers/DashboardController';
 
 import CreditCardController from './app/controllers/CreditCardController';
 import MailerController from './app/controllers/MailerController';
+import CreditWalletsController from './app/controllers/CreditWalletsController';
 
 // import ProviderController from './app/controllers/ProviderController';
 // import TelegramController from './app/controllers/TelegramController';
@@ -52,6 +53,7 @@ routes.put('/categories', CategoriesController.update);
 routes.post('/wallets', WalletsController.store);
 routes.get('/wallets', WalletsController.index);
 routes.get('/wallets/:id', WalletsController.show);
+routes.get('/wallets/credit', CreditWalletsController.index);
 routes.put('/wallets', WalletsController.update);
 
 routes.get('/dashboard', DashboardController.index);

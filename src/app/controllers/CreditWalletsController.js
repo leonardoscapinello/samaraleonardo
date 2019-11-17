@@ -6,7 +6,7 @@ import WalletsResume from '../../services/wallets';
 class CreditWalletsController {
   async index(req, res) {
     const wallets = await Wallet.findAll({
-      where: { is_credit: true, wallet_type: ['MN', 'DC'] },
+      where: { wallet_type: ['MN', 'DC'] },
       attributes: [
         'id',
         'name',

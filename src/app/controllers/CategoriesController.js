@@ -69,7 +69,7 @@ class CategoryController {
   async index(req, res) {
     const categories = await Category.findAll({
       where: {
-        id_category: {
+        id: {
           [Op.gt]: 4,
         },
       },

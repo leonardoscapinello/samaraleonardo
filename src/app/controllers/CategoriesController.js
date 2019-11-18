@@ -22,6 +22,9 @@ class CategoryController {
         .status(400)
         .json({ error: 'Category with this name already exists.' });
     }
+
+    req.body.is_visible = true;
+
     const { id, category_name } = await Category.create(req.body);
     return res.json({
       id,

@@ -10,6 +10,7 @@ import CategoriesController from './app/controllers/CategoriesController';
 import CreditCategoriesController from './app/controllers/CreditCategoriesController';
 import DebitCategoriesController from './app/controllers/DebitCategoriesController';
 import WalletsController from './app/controllers/WalletsController';
+import CreditCardWalletsController from './app/controllers/CreditCardWalletsController';
 
 import authMiddleware from './app/middleware/auth';
 import CreditsController from './app/controllers/CreditsController';
@@ -53,6 +54,7 @@ routes.put('/categories', CategoriesController.update);
 routes.post('/wallets', WalletsController.store);
 routes.get('/wallets', WalletsController.index);
 routes.get('/wallets/credit', CreditWalletsController.index);
+routes.get('/wallets/creditcard', CreditCardWalletsController.index);
 routes.get('/wallets/:id', WalletsController.show);
 routes.put('/wallets', WalletsController.update);
 

@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import { Op } from 'sequelize';
 import Category from '../models/Categories';
 
 class CategoryController {
@@ -69,9 +68,7 @@ class CategoryController {
   async index(req, res) {
     const categories = await Category.findAll({
       where: {
-        id: {
-          [Op.gt]: 4,
-        },
+        is_visible: true,
       },
       attributes: [
         'id',

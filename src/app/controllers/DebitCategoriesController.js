@@ -3,7 +3,7 @@ import Category from '../models/Categories';
 class CreditCategoryController {
   async index(req, res) {
     const categories = await Category.findAll({
-      where: { is_credit: false },
+      where: { is_credit: false, is_visible: true },
       attributes: [
         'id',
         'category_name',

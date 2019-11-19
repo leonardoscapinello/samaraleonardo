@@ -1,3 +1,9 @@
+import fs from 'fs';
 import app from './app';
 
-app.listen(3030);
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+};
+
+app.createServer(options, () => {}).listen(3030);
